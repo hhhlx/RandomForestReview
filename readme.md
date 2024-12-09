@@ -81,3 +81,13 @@
 1. 알고리즘 원리의 완전한 도출 및 수학적 분석
 2. 실행 가능한 Python 구현 코드
 3. 실험결과 분석보고서
+
+## 참고자료
+[1] Fayyad, U.P, Piatetsky-Shapiro, G., Smyth, P.: From data mining to knowledge discovery in databases. AI Mag. 17(3), 37 (1996)  
+[2] Briem, G.J., Benediktsson, J.A., Sveinsson, J.R.: Multiple classifiers applied to multisource remote sensing data. IEEE Trans. Geosci. 40(10) (2002)  
+[3] Kuncheva, L.I., Whitaker, C.J.: Measures of diversity in classifier ensembles and their relationship with the ensemble accuracy. Mach. Learn. 51(2), 181–207 (2003)  
+[4] Lam, L., Suen, C.Y.: Application of majority voting to pattern recognition: an analysis of its behavior and performance. IEEE 27(5), 553–568 (1997)  
+[5] Breiman, L.: Bagging predictors. Mach. Learn. 24(2), 123–140 (1996)  
+[6] Dietterich, T.G.: An experimental comparison of three methods for constructing ensembles of decision trees: bagging, boosting, and randomization. Mach. Learn. 40(2), 139–157  
+[7] Azar, A.T., Elshazly, H.I., Hassanien, A.E., Elkorany, A.M.: A random forest classifier for lymph diseases. Comput. Methods Programs Biomed. 113(2), 465–473 (2014)  
+
