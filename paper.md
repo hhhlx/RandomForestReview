@@ -4,9 +4,53 @@
 
 ### 1.1 연구 배경 및 의의
 
-랜덤 포레스트는 전형적인 앙상블 학습 방법으로, 2001년 Breiman에 의해 제안된 이후 기계학습 분야에서 광범위하게 적용되고 연구되어 왔습니다. 빅데이터 시대를 맞이하여 고차원 특징, 비선형 관계 및 복잡한 노이즈 등의 도전과제에 직면하면서, 전통적인 단일 분류기로는 이상적인 성능을 얻기 어려워졌습니다. 랜덤 포레스트는 여러 의사결정 트리 분류기를 결합하고, 랜덤 특징 선택과 샘플링 메커니즘을 도입함으로써 모델의 일반화 능력을 향상시키는 동시에 강력한 노이즈 저항성과 특징 선택 능력을 보여주고 있습니다.
+RF는 분류 및 회귀에 사용되는 앙상블 학습 방법입니다.Breiman(2001)이 개발한 이 방법은 Breiman의 배깅 샘플링 접근 방식(1996a)과 Ho(1995; 1998)와 Amit과 Geman(1997)이 독립적으로 도입한 무작위 기능 선택을 결합하여 통제된 변동이 있는 결정 트리 컬렉션을 구성합니다.배깅을 사용하여 앙상블의 각 결정 트리는 훈련 데이터의 복원 샘플을 사용하여 구성됩니다.통계적으로 샘플은 샘플에서 적어도 한 번 나타나는 인스턴스의 약 64%를 가질 가능성이 높습니다.샘플의 인스턴스는 인백 인스턴스라고 하며 나머지 인스턴스(약 36%)는 아웃오브백 인스턴스라고 합니다.앙상블의 ​​각 트리는 레이블이 없는 인스턴스의 클래스 레이블을 결정하는 기본 분류기 역할을 합니다. 이는 각 분류자가 예측된 클래스 레이블에 대해 한 표를 던진 다음 가장 많은 표를 얻은 클래스 레이블을 사용하여 인스턴스를 분류하는 다수결 투표를 통해 수행됩니다.
+
+RF와 다수결 투표를 설명하기 위해 8개의 샘플과 4개의 특징으로 구성된 표 1에 나와 있는 교육 데이터를 고려합니다. RF는 다른 특징인 Outlook, HWDone 및 Weekend에 대한 미리 정의된 값을 고려하여 어린이가 놀 수 있는지 여부를 결정하는 Play 특징의 값을 예측하기 위해 생성됩니다. 예를 들어, 주말이든 주중이든 맑은 날에 숙제를 마쳤다면 어린이가 놀 수 있다는 것은 교육 데이터에서 분명합니다. 숙제를 마쳤더라도 비오는 주중에는 놀 수 없습니다. 새로운 샘플을 분류하는 데 도움이 되도록 그림 3과 같이 3개의 트리로 구성된 RF가 생성되었습니다. 표 2는 샘플을 분류하기 위해 투표를 한 결과(rainy, false, true,?)를 보여줍니다. 여기서 ? 표시는 결정할 Play 특징의 값을 나타내는 데 사용됩니다. 표 2에서 보듯이, 나무 A와 C는 "예"에 투표했고, 나무 B는 "아니오"에 투표했습니다. 다수결 투표에 의해 승리한 투표는 따라서 "예"입니다(어린이가 놀 수 있습니다!).
+
+<div align="center">
+
+| Outlook | HWDone | Weekend | Play |
+|---------|---------|---------|------|
+| Sunny | True | True | Yes |
+| Sunny | True | False | Yes |
+| Sunny | False | True | Yes |
+| Sunny | False | False | No |
+| Rainy | True | True | Yes |
+| Rainy | True | False | No |
+| Rainy | False | True | Yes |
+| Rainy | False | False | No |
+
+표 1-1. 훈련 데이터
+
+</div>
+
+
+<div align="center">
+  <img src="./threeTreesRF.jpg" alt="">
+  <p>그림 1-1. 세 그루의 나무 랜덤 포레스트</p>
+</div>
+
+<div align="center">
+
+| Tree | Vote |
+|------|------|
+| A    | Yes  |
+| B    | No   |
+| C    | Yes  |
+
+표 1-2. 투표 결과
+
+</div>
+
+빅데이터 시대를 맞이하여 고차원 특징, 비선형 관계 및 복잡한 노이즈 등의 도전과제에 직면하면서, 전통적인 단일 분류기로는 이상적인 성능을 얻기 어려워졌습니다. 랜덤 포레스트는 여러 의사결정 트리 분류기를 결합하고, 랜덤 특징 선택과 샘플링 메커니즘을 도입함으로써 모델의 일반화 능력을 향상시키는 동시에 강력한 노이즈 저항성과 특징 선택 능력을 보여주고 있습니다.
 
 이론 연구와 실제 응용의 관점에서 볼 때, 랜덤 포레스트는 우수한 성능과 해석 가능성으로 인해 의료 진단, 금융 리스크 관리, 이미지 인식 등 다양한 분야에서 충분히 검증되고 실천되었습니다. 랜덤 포레스트 알고리즘의 수학적 원리를 체계적으로 검토하고 다양한 응용 시나리오에서의 성능 특성을 실험 분석과 결합함으로써, 이 중요한 기계학습 방법을 더 잘 이해하고 파악할 수 있습니다. 본 논문은 랜덤 포레스트의 기본 원리와 수학적 도출 과정을 정리하고, 구체적인 실험을 통해 실제 응용에서의 성능을 보여줄 것입니다.
+
+<div align="center">
+  <img src="./RFapplications.jpg" alt="">
+  <p>그림 1-2. 랜덤 포레스트 알고리즘의 응용 시나리오</p>
+</div>
 
 ### 1.2 연구 목적
 
@@ -112,9 +156,9 @@ $$
 
 노드 분할 시, 모든 특징을 고려하는 대신 특징 하위 집합을 무작위로 선택합니다. 이 메커니즘의 수학적 기댓값은 다음과 같이 표현할 수 있습니다:
 
-$
+$$
 E[\text{선택된 특징}] = \frac{m}{p} \cdot p = m
-$
+$$
 
 여기서:
 
@@ -130,9 +174,9 @@ $
 
 각 트리의 학습 과정은 다음과 같은 최적화 문제로 표현할 수 있습니다:
 
-$
+$$
 \min_{\theta_t} \sum_{i \in B_t} L(y_i, h_t(x_i; \theta_t))
-$
+$$
 
 여기서:
 
@@ -147,9 +191,9 @@ $
 
 랜덤 포레스트의 일반화 오차는 편향과 분산 두 부분으로 분해할 수 있습니다:
 
-$
+$$
 E[(y - \hat{f}(x))^2] = [E[\hat{f}(x)] - f(x)]^2 + E[\hat{f}(x) - E[\hat{f}(x)]]^2 + \sigma^2
-$
+$$
 
 여기서:
 
@@ -161,9 +205,9 @@ $
 
 T개의 트리를 포함하는 랜덤 포레스트의 경우, 그 분산은 다음과 같이 도출될 수 있습니다:
 
-$
+$$
 Var(\hat{f}_{rf}) = \rho \sigma^2 + \frac{1-\rho}{T}\sigma^2
-$
+$$
 
 여기서:
 
@@ -178,15 +222,15 @@ $
 
 #### 2.3.3 수렴성 이론
 
-랜덤 포레스트의 강한 일관성 정리에 따르면, 트리의 수가 무한대로 접근할 때:
+랜덤 포레스트의 강한 일관성 정리에 따르면, 트리의 수가 무한대로 접근할 때:  
 
-$
-P(|\hat{f}_{rf}(x) - E[\hat{f}_{rf}(x)]| > \epsilon) \leq 2\exp(-\frac{2T\epsilon^2}{\sigma^2})
-$
+$$P(|X - E[X]| > \epsilon) \leq 2\exp(-\frac{2T\epsilon^2}{\sigma^2})$$
+
+여기서 $$X = \hat{f}_{rf}(x)$$
 
 이 부등식은 Hoeffding 부등식을 기반으로 도출되며, 다음을 나타냅니다:
 
-1. 예측값과 기댓값 사이의 편차는 지수적 속도로 감소합니다
+1. 예측값과 기댓값 사이의 편차는 지수적 속도로 감소합니다 
 2. 트리의 수 T가 클수록, 편차가 $\epsilon$을 초과할 확률이 작아집니다
 
 ## 3 알고리즘 구현
@@ -289,10 +333,18 @@ $
 
 &emsp;&emsp;트리예측(우측서브트리, 샘플) 반환
 
+<div align="center">
+  <img src="./RFalgo.jpg" alt="">
+</div>
+<center>그림 3-1. 랜덤 포레스트 알고리즘</center>
+
 ## 4 프로그래밍 구현 및 실험
 
 숫자 데이터 세트를 사용하여 Random Forest의 성능을 테스트하기 위해 저장소의 코드를 사용하여 실험을 수행했습니다. 데이터를 60% 훈련 세트와 40% 테스트 세트로 나누어 100개의 의사결정 트리가 포함된 Random Forest 분류기를 훈련하고 예측 정확도를 계산하며, 분류 결과를 PCA 차원 축소를 통해 2차원 산점도 형태로 시각화합니다. 전시하다. 아래 그림과 같이 최종 모델의 분류 정확도는 95.82%이다.
-![res](./res.jpg "")
+<div align="center">
+  <img src="./res.jpg" alt="">
+</div>
+<center>그림 4-1. 실험 결과</center>
 
 ## 5 결론
 
@@ -303,3 +355,12 @@ $
 둘째, 일반화 오차 분해와 분산 분석을 통해 랜덤 포레스트의 성능 특성을 이론적으로 규명했으며, 특히 트리 수와 상관계수가 모델 성능에 미치는 영향을 수학적으로 도출했습니다.
 
 셋째, 실험을 통해 구현된 랜덤 포레스트 모델이 95.82%의 높은 분류 정확도를 달성함을 입증했습니다. 이는 본 연구에서 제시한 이론적 분석과 구현 방법의 유효성을 실증적으로 검증합니다.
+
+## 참고자료
+Fayyad, U.P, Piatetsky-Shapiro, G., Smyth, P.: From data mining to knowledge discovery in databases. AI Mag. 17(3), 37 (1996)  
+Briem, G.J., Benediktsson, J.A., Sveinsson, J.R.: Multiple classifiers applied to multisource remote sensing data. IEEE Trans. Geosci. 40(10) (2002)  
+Kuncheva, L.I., Whitaker, C.J.: Measures of diversity in classifier ensembles and their relationship with the ensemble accuracy. Mach. Learn. 51(2), 181–207 (2003)  
+Lam, L., Suen, C.Y.: Application of majority voting to pattern recognition: an analysis of its behavior and performance. IEEE 27(5), 553–568 (1997)  
+Breiman, L.: Bagging predictors. Mach. Learn. 24(2), 123–140 (1996)  
+Dietterich, T.G.: An experimental comparison of three methods for constructing ensembles of decision trees: bagging, boosting, and randomization. Mach. Learn. 40(2), 139–157  
+Azar, A.T., Elshazly, H.I., Hassanien, A.E., Elkorany, A.M.: A random forest classifier for lymph diseases. Comput. Methods Programs Biomed. 113(2), 465–473 (2014)  
