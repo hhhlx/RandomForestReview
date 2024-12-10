@@ -1,4 +1,5 @@
-# 랜덤 포레스트 알고리즘 원리 분석 및 구현
+# 랜덤 포레스트 알고리즘 원리 분석 및 구현  
+https://youtu.be/nk2exzYEXhM?si=N8Gk4IOuXLMExMIs
 
 ## 1 서론
 
