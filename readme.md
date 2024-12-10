@@ -5,7 +5,7 @@
 - 유운상 정보사회미디어 yoohoojessicaaa@gmail.com
 - 황릉훤 정보사회미디어학과 2021037483 h2792597254@163.com
 - 조로단 전자공학 CAOLUDAN0909@126.com  
-https://youtu.be/nk2exzYEXhM?si=N8Gk4IOuXLMExMIs
+Video Recording Link：https://youtu.be/nk2exzYEXhM?si=N8Gk4IOuXLMExMIs
 ## 주제 선정 이유 분석
 
 ### 1. 알고리즘의 이론적 가치
